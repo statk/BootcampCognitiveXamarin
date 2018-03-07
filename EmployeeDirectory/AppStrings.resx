@@ -118,6 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AzureConnectionString" xml:space="preserve">
-    <value>f292ab009516411581d214a3c2d1488d</value>
+    <value>&lt;face-api-connection-string&gt;</value>
   </data>
 </root>

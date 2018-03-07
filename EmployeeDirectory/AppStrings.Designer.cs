@@ -62,7 +62,7 @@ namespace EmployeeDirectory {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to f292ab009516411581d214a3c2d1488d.
+        ///   Looks up a localized string similar to &lt;face-api-connection-string&gt;.
         /// </summary>
         internal static string AzureConnectionString {
             get {
