@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using CommonServiceLocator;
+using EmployeeDirectory.ViewModels;
 using Foundation;
+using GalaSoft.MvvmLight.Ioc;
 using UIKit;
 
 namespace EmployeeDirectory.iOS
@@ -14,7 +16,12 @@ namespace EmployeeDirectory.iOS
 		{
 			global::Xamarin.Forms.Forms.Init();
 
-			LoadApplication(new App());
+            var locator = SimpleIoc.Default;
+
+            locator.Register<EmployeesViewModel>();
+            locator.Register<NewEmployeeViewModel>();
+
+            LoadApplication(new App());
 
 			return base.FinishedLaunching(app, options);
 		}

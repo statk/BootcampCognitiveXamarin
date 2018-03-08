@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EmployeeDirectory.ViewModels;
+using GalaSoft.MvvmLight.Ioc;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +27,10 @@ namespace EmployeeDirectory.Windows
         public MainPage()
         {
             this.InitializeComponent();
+
+           
+
+            
 
             LoadApplication(new EmployeeDirectory.App());
         }

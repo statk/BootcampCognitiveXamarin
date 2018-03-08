@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Ioc;
+using System;
 using System.Collections.Generic;
 
 using Xamarin.Forms;
@@ -11,7 +12,8 @@ namespace EmployeeDirectory
 		{
 			InitializeComponent();
 
-			BindingContext = new EmployeesViewModel();
+            var vm = SimpleIoc.Default.GetInstanceWithoutCaching<EmployeesViewModel>();
+            BindingContext = vm;
 		}
 	}
 }

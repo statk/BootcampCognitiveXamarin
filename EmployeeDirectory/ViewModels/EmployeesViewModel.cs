@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using Xamarin.Forms;
-using Plugin.Media;
-using Plugin.Media.Abstractions;
-using Acr.UserDialogs;
-using Microsoft.ProjectOxford.Face;
 using EmployeeDirectory.ViewModels;
+using Microsoft.ProjectOxford.Face;
 
 namespace EmployeeDirectory
 {
 	public class EmployeesViewModel : CognitiveViewModelBase
 	{
-		private string personGroupId;
+		private const string personGroupId = "Msp volonteer";
 
 		public EmployeesViewModel()
 		{
@@ -32,7 +26,7 @@ namespace EmployeeDirectory
 		private Command findSimilarFaceCommand;
 		public Command FindSimilarFaceCommand
 		{
-			get { return findSimilarFaceCommand ?? (findSimilarFaceCommand = new Command(async () => await ExecuteFindSimilarFaceCommandAsync())); }
+			get { return findSimilarFaceCommand ?? (findSimilarFaceCommand = new Command(async () => await ExecuteFindSimilarFaceCommandAsync(personGroupId))); }
 		}
 
 		

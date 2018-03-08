@@ -7,6 +7,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using GalaSoft.MvvmLight.Ioc;
+using EmployeeDirectory.ViewModels;
 
 namespace EmployeeDirectory.Droid
 {
@@ -22,7 +24,12 @@ namespace EmployeeDirectory.Droid
 
 			global::Xamarin.Forms.Forms.Init(this, bundle);
 
-			LoadApplication(new App());
+            var locator = SimpleIoc.Default;
+
+            locator.Register<EmployeesViewModel>();
+            locator.Register<NewEmployeeViewModel>();
+
+            LoadApplication(new App());
 
 			Acr.UserDialogs.UserDialogs.Init(this);
 		}

@@ -1,4 +1,8 @@
-﻿using Xamarin.Forms;
+﻿using CommonServiceLocator;
+using EmployeeDirectory.ViewModels;
+using GalaSoft.MvvmLight.Ioc;
+using System;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
@@ -10,10 +14,24 @@ namespace EmployeeDirectory
 		{
 			InitializeComponent();
 
+            InotialiseIoc();
+
+
 			MainPage = new NavigationPage(new EmployeesPage());
 		}
 
-		protected override void OnStart()
+        private void InotialiseIoc()
+        {
+            var container = SimpleIoc.Default;
+
+            container.Register<EmployeesViewModel>();
+            container.Register<NewEmployeeViewModel>();
+
+            
+            ServiceLocator.SetLocatorProvider(()=> container);
+        }
+
+        protected override void OnStart()
 		{
 			// Handle when your app starts
 		}

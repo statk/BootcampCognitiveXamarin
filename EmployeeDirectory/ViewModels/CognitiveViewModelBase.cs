@@ -12,13 +12,13 @@ namespace EmployeeDirectory.ViewModels
 {
     public class CognitiveViewModelBase : BaseViewModel
     {
-        private readonly FaceServiceClient _faceServiceClient;
+        private readonly IFaceServiceClient _faceServiceClient;
 
-        public CognitiveViewModelBase(FaceServiceClient faceServiceClient)
+        public CognitiveViewModelBase()
         {
-            _faceServiceClient = faceServiceClient;
+            _faceServiceClient = new FaceServiceClient(AppStrings.AzureConnectionString);
         }
-        private async Task ExecuteFindSimilarFaceCommandAsync(string personGroupId)
+        protected async Task ExecuteFindSimilarFaceCommandAsync(string personGroupId)
         {
             if (IsBusy)
                 return;
@@ -36,10 +36,10 @@ namespace EmployeeDirectory.ViewModels
                     var faces = await _faceServiceClient.DetectAsync(stream);
                     var faceIds = faces.Select(face => face.FaceId).ToArray();
 
-                    var results = await _faceServiceClient.IdentifyAsync(personGroupId, faceIds);
+                    var results = await _faceServiceClient.IdentifyAsync(faceIds, personGroupId: personGroupId);
                     var result = results[0].Candidates[0].PersonId;
 
-                    var person = await _faceServiceClient.GetPersonAsync(personGroupId, result);
+                    var person = await _faceServiceClient.GetPersonInPersonGroupAsync(personGroupId, result);
 
                     UserDialogs.Instance.ShowSuccess($"Person identified is {person.Name}.");
                 }
