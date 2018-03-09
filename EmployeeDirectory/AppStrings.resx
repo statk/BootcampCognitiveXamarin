@@ -121,6 +121,6 @@
     <value>https://westeurope.api.cognitive.microsoft.com/face/v1.0</value>
   </data>
   <data name="AzureConnectionString" xml:space="preserve">
-    <value>a51c56c563d64d40a6ed81459150a33b</value>
+    <value>&lt;azure-face-api-connection-string&gt;</value>
   </data>
 </root>
