@@ -117,7 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AzureConnectionEndpoint" xml:space="preserve">
+    <value>https://westeurope.api.cognitive.microsoft.com/face/v1.0</value>
+  </data>
   <data name="AzureConnectionString" xml:space="preserve">
-    <value>&lt;face-api-connection-string&gt;</value>
+    <value>a51c56c563d64d40a6ed81459150a33b</value>
   </data>
 </root>

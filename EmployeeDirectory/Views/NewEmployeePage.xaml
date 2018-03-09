@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EmployeeDirectory.Views.NewEmployeePage">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="1" Grid.Row="0" Text="Имя:"></Label>
+                <Entry Grid.Column="1" Grid.Row="1" Text="{Binding FirstName}"></Entry>
+                <Label Grid.Column="1" Grid.Row="2" Text="Фамилия:"></Label>
+                <Entry Grid.Column="1" Grid.Row="3" Text="{Binding LastName}"></Entry>
+                <Label Grid.Column="1" Grid.Row="4" Text="Позиция:"></Label>
+                <Entry Grid.Column="1" Grid.Row="5" Text="{Binding Position}"></Entry>
+                <Image Grid.Column="0" Grid.RowSpan="6" Source="{Binding Photo}" BackgroundColor="Blue">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PhotoCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Button Text="Добавить Волонтёра" Command="{Binding NewVolonteerCommand}"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

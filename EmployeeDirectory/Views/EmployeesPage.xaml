@@ -3,7 +3,7 @@
 		Title="{Binding Title}"
 		xmlns:local="clr-namespace:EmployeeDirectory;assembly=EmployeeDirectory">
 	<ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add employee" Command="{Binding FindSimilarFaceCommand}"/>
+        <ToolbarItem Text="Add employee" Clicked="AddNewVolonteerClicked"/>
         <ToolbarItem Text="Identify" Command="{Binding FindSimilarFaceCommand}"/>
     </ContentPage.ToolbarItems>
 	<ContentPage.Content>

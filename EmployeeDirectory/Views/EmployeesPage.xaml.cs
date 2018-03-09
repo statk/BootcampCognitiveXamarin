@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Ioc;
+﻿using EmployeeDirectory.Views;
+using GalaSoft.MvvmLight.Ioc;
 using System;
 using System.Collections.Generic;
 
@@ -12,8 +13,13 @@ namespace EmployeeDirectory
 		{
 			InitializeComponent();
 
-            var vm = SimpleIoc.Default.GetInstanceWithoutCaching<EmployeesViewModel>();
+            var vm = SimpleIoc.Default.GetInstanceWithoutCaching<VolonteerViewModel>();
             BindingContext = vm;
 		}
-	}
+
+        private async void AddNewVolonteerClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NewEmployeePage());
+        }
+    }
 }

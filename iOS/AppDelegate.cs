@@ -18,8 +18,8 @@ namespace EmployeeDirectory.iOS
 
             var locator = SimpleIoc.Default;
 
-            locator.Register<EmployeesViewModel>();
-            locator.Register<NewEmployeeViewModel>();
+            locator.Register<VolonteerViewModel>();
+            locator.Register<NewVolonteerViewModel>();
 
             LoadApplication(new App());
 

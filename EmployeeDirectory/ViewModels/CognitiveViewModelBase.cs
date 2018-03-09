@@ -4,6 +4,7 @@ using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,11 +13,15 @@ namespace EmployeeDirectory.ViewModels
 {
     public class CognitiveViewModelBase : BaseViewModel
     {
+        /// <summary>
+        /// tuto: https://docs.microsoft.com/fr-fr/azure/cognitive-services/face/quickstarts/csharp
+        /// </summary>
         private readonly IFaceServiceClient _faceServiceClient;
+        private const string groupId = "cb7fd53c16eb47cd9e31dda435abbc4d";
 
         public CognitiveViewModelBase()
         {
-            _faceServiceClient = new FaceServiceClient(AppStrings.AzureConnectionString);
+            _faceServiceClient = new FaceServiceClient(AppStrings.AzureConnectionString, AppStrings.AzureConnectionEndpoint);
         }
         protected async Task ExecuteFindSimilarFaceCommandAsync(string personGroupId)
         {
@@ -36,16 +41,17 @@ namespace EmployeeDirectory.ViewModels
                     var faces = await _faceServiceClient.DetectAsync(stream);
                     var faceIds = faces.Select(face => face.FaceId).ToArray();
 
-                    var results = await _faceServiceClient.IdentifyAsync(faceIds, personGroupId: personGroupId);
+                    var results = await _faceServiceClient.IdentifyAsync(personGroupId, faceIds);
                     var result = results[0].Candidates[0].PersonId;
 
-                    var person = await _faceServiceClient.GetPersonInPersonGroupAsync(personGroupId, result);
+                    var person = await _faceServiceClient.GetPersonAsync(personGroupId, result);
 
                     UserDialogs.Instance.ShowSuccess($"Person identified is {person.Name}.");
                 }
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex.Message);
                 UserDialogs.Instance.ShowError(ex.Message);
             }
             finally
@@ -54,7 +60,7 @@ namespace EmployeeDirectory.ViewModels
             }
         }
 
-        private static async Task<MediaFile> Snapshot()
+        public async Task<MediaFile> Snapshot()
         {
             MediaFile photo;
 
@@ -77,7 +83,7 @@ namespace EmployeeDirectory.ViewModels
             return photo;
         }
 
-        private async Task RegisterEmployee(string title, Person employee)
+        public async Task RegisterEmployee(string title, Person employee, MediaFile photo)
         {
             if (IsBusy)
                 return;
@@ -86,23 +92,34 @@ namespace EmployeeDirectory.ViewModels
 
             try
             {
-                MediaFile photo = await Snapshot();
 
                 // Step 1 - Create Face List
-                var personGroupId = Guid.NewGuid().ToString();
-                await _faceServiceClient.CreatePersonGroupAsync(personGroupId, title);
+                try
+                {
+                    await _faceServiceClient.GetPersonGroupAsync(groupId);
+                }
+                catch (Exception)
+                {
+
+                    await _faceServiceClient.CreatePersonGroupAsync(groupId, title);
+                }
+                
+
+                //if (group == null)
+                   
 
                 // Step 2 - Add people to face list
 
-                var p = await _faceServiceClient.CreatePersonAsync(personGroupId, employee.Name);
-                await _faceServiceClient.AddPersonFaceAsync(personGroupId, p.PersonId, employee.PhotoUrl);
+                var p = await _faceServiceClient.CreatePersonInPersonGroupAsync(groupId, employee.Name);
+                await _faceServiceClient.AddPersonFaceInPersonGroupAsync(groupId, p.PersonId, photo.GetStream());
 
                 // Step 3 - Train face group
-                await _faceServiceClient.TrainPersonGroupAsync(personGroupId);
+                await _faceServiceClient.TrainPersonGroupAsync(groupId);
             }
 
             catch (Exception ex)
             {
+                Debug.WriteLine(ex.Message);
                 UserDialogs.Instance.ShowError(ex.Message);
             }
             finally

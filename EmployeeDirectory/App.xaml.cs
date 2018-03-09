@@ -24,8 +24,8 @@ namespace EmployeeDirectory
         {
             var container = SimpleIoc.Default;
 
-            container.Register<EmployeesViewModel>();
-            container.Register<NewEmployeeViewModel>();
+            container.Register<VolonteerViewModel>();
+            container.Register<NewVolonteerViewModel>();
 
             
             ServiceLocator.SetLocatorProvider(()=> container);

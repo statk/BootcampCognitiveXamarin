@@ -52,14 +52,22 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="ViewModels\CognitiveViewModelBase.cs" />
-    <Compile Include="ViewModels\EmployeesViewModel.cs" />
-    <Compile Include="ViewModels\NewEmployeeViewModel.cs" />
+    <Compile Include="ViewModels\VolonteerViewModel.cs" />
+    <Compile Include="ViewModels\NewVolonteerViewModel.cs" />
     <Compile Include="Views\EmployeesPage.xaml.cs">
       <DependentUpon>EmployeesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\CardViewCell.cs" />
+    <Compile Include="Views\NewEmployeePage.xaml.cs">
+      <DependentUpon>NewEmployeePage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Views\NewEmployeePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Reference Include="CommonServiceLocator, Version=2.0.3.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.2.0.3\lib\netstandard1.0\CommonServiceLocator.dll</HintPath>

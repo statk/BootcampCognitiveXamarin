@@ -5,11 +5,11 @@ using Microsoft.ProjectOxford.Face;
 
 namespace EmployeeDirectory
 {
-	public class EmployeesViewModel : CognitiveViewModelBase
+	public class VolonteerViewModel : CognitiveViewModelBase
 	{
 		private const string personGroupId = "Msp volonteer";
 
-		public EmployeesViewModel()
+		public VolonteerViewModel()
 		{
 			Title = "Persons";
 
@@ -29,6 +29,6 @@ namespace EmployeeDirectory
 			get { return findSimilarFaceCommand ?? (findSimilarFaceCommand = new Command(async () => await ExecuteFindSimilarFaceCommandAsync(personGroupId))); }
 		}
 
-		
-	}
+
+    }
 }

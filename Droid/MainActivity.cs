@@ -26,8 +26,8 @@ namespace EmployeeDirectory.Droid
 
             var locator = SimpleIoc.Default;
 
-            locator.Register<EmployeesViewModel>();
-            locator.Register<NewEmployeeViewModel>();
+            locator.Register<VolonteerViewModel>();
+            locator.Register<NewVolonteerViewModel>();
 
             LoadApplication(new App());
 

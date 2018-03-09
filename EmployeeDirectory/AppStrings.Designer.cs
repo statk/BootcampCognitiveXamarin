@@ -62,7 +62,16 @@ namespace EmployeeDirectory {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;face-api-connection-string&gt;.
+        ///   Looks up a localized string similar to https://westeurope.api.cognitive.microsoft.com/face/v1.0.
+        /// </summary>
+        internal static string AzureConnectionEndpoint {
+            get {
+                return ResourceManager.GetString("AzureConnectionEndpoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to a51c56c563d64d40a6ed81459150a33b.
         /// </summary>
         internal static string AzureConnectionString {
             get {
