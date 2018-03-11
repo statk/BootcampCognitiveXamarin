@@ -35,7 +35,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\EmployeesPage.xaml">
+    <EmbeddedResource Include="Views\VolonteersPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -54,16 +54,15 @@
     <Compile Include="ViewModels\CognitiveViewModelBase.cs" />
     <Compile Include="ViewModels\VolonteerViewModel.cs" />
     <Compile Include="ViewModels\NewVolonteerViewModel.cs" />
-    <Compile Include="Views\EmployeesPage.xaml.cs">
-      <DependentUpon>EmployeesPage.xaml</DependentUpon>
+    <Compile Include="Views\VolonteersPage.xaml.cs">
+      <DependentUpon>VolonteersPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CardViewCell.cs" />
-    <Compile Include="Views\NewEmployeePage.xaml.cs">
-      <DependentUpon>NewEmployeePage.xaml</DependentUpon>
+    <Compile Include="Views\NewVolonteerPage.xaml.cs">
+      <DependentUpon>NewVolonteerPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\NewEmployeePage.xaml">
+    <EmbeddedResource Include="Views\NewVolonteerPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

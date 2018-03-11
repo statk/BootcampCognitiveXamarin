@@ -2,33 +2,48 @@
 using Xamarin.Forms;
 using EmployeeDirectory.ViewModels;
 using Microsoft.ProjectOxford.Face;
+using System.Diagnostics;
+using System.Windows.Input;
+using System;
+using Plugin.Media.Abstractions;
 
 namespace EmployeeDirectory
 {
 	public class VolonteerViewModel : CognitiveViewModelBase
 	{
 		private const string personGroupId = "Msp volonteer";
+        public string OutputString { get; private set; }
 
-		public VolonteerViewModel()
+        public ImageSource Photo => ImageSource.FromStream(() => _photo?.GetStream());
+        private MediaFile _photo;
+
+        public VolonteerViewModel(IFaceServiceClient faceServiceClient) : base(faceServiceClient)
 		{
 			Title = "Persons";
+            AnalizeFaceCommand = new Command(AnalizeFace);
+            FindSimilarFaceCommand = new Command(FindSimilarFace);
+            OutputString = string.Empty;
+        }
 
-			Employees = new ObservableCollection<Person>();
-		}
+        private async void AnalizeFace(object obj)
+        {
+            _photo = await Snapshot();
+            OnPropertyChanged(nameof(Photo));
+            OutputString = await FaceDescription(_photo);
+            OnPropertyChanged(nameof(OutputString));
+        }
 
-		private ObservableCollection<Person> employees;
-		public ObservableCollection<Person> Employees
-		{
-			get { return employees; }
-			set { employees = value; OnPropertyChanged("Persons"); }
-		}
+		public ICommand FindSimilarFaceCommand { get; private set; }
+		
 
-		private Command findSimilarFaceCommand;
-		public Command FindSimilarFaceCommand
-		{
-			get { return findSimilarFaceCommand ?? (findSimilarFaceCommand = new Command(async () => await ExecuteFindSimilarFaceCommandAsync(personGroupId))); }
-		}
+        private async void FindSimilarFace(object obj)
+        {
+            _photo = await Snapshot();
+            OnPropertyChanged(nameof(Photo));
+            OutputString = await ExecuteFindSimilarFaceCommandAsync(personGroupId, _photo);
+            OnPropertyChanged(nameof(OutputString));
+        }
 
-
+        public ICommand AnalizeFaceCommand { get; private set; }
     }
 }

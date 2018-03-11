@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Ioc;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,7 +34,7 @@ namespace EmployeeDirectory.Views
 
 
 
-        private async void OnPopToListPage(object sender, EventArgs e)
+        private async void OnPopToListPage(object sender, Person person)
         {
             await Navigation.PopModalAsync();
         }

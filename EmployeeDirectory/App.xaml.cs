@@ -1,6 +1,7 @@
 ﻿using CommonServiceLocator;
 using EmployeeDirectory.ViewModels;
 using GalaSoft.MvvmLight.Ioc;
+using Microsoft.ProjectOxford.Face;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -27,7 +28,9 @@ namespace EmployeeDirectory
             container.Register<VolonteerViewModel>();
             container.Register<NewVolonteerViewModel>();
 
-            
+            container.Register<IFaceServiceClient>(() => new FaceServiceClient(AppStrings.AzureConnectionString, AppStrings.AzureConnectionEndpoint));
+
+
             ServiceLocator.SetLocatorProvider(()=> container);
         }
 

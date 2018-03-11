@@ -1,4 +1,5 @@
-﻿using Plugin.Media.Abstractions;
+﻿using Microsoft.ProjectOxford.Face;
+using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,21 +12,21 @@ namespace EmployeeDirectory.ViewModels
 {
     public class NewVolonteerViewModel : CognitiveViewModelBase
     {
-        private const string personGroupId = "Msp volonteer";
+        private const string personGroupId = "volonteer";
 
         public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Position { get; set; }
+        public string LastName { get; set; } 
+        public string Position { get; set; } 
         public ImageSource Photo => ImageSource.FromStream(()=>_photo?.GetStream());
         private MediaFile _photo;
 
         public ICommand PhotoCommand { get; private set; }
         public ICommand NewVolonteerCommand { get; private set; }
 
-        public event EventHandler PopToList;
+        public event EventHandler<Person> PopToList;
 
 
-        public NewVolonteerViewModel()
+        public NewVolonteerViewModel(IFaceServiceClient faceServiceClient): base(faceServiceClient)
         {
             PhotoCommand = new Command(TakePhoto);
             NewVolonteerCommand = new Command(RegisterVolonteer);
@@ -42,7 +43,7 @@ namespace EmployeeDirectory.ViewModels
             };
 
             await RegisterEmployee(personGroupId, volonteer, _photo);
-            PopToList?.Invoke(this, EventArgs.Empty);
+            PopToList?.Invoke(this, volonteer);
 
         }
 

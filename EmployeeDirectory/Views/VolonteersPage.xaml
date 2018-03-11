@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="EmployeeDirectory.EmployeesPage"
+		Title="{Binding Title}">
+	<ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add employee" Clicked="AddNewVolonteerClicked"/>
+        <ToolbarItem Text="Identify" Command="{Binding FindSimilarFaceCommand}"/>
+        <ToolbarItem Text="AnalizeFace" Command="{Binding AnalizeFaceCommand}"/>
+    </ContentPage.ToolbarItems>
+	<ContentPage.Content>
+		<StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="1" Text="{Binding OutputString}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
+                <Image Grid.Column="0" Source="{Binding Photo}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+            </Grid>
+        </StackLayout>
+	</ContentPage.Content>
+</ContentPage>
