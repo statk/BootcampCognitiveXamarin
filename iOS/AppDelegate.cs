@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using CommonServiceLocator;
-using EmployeeDirectory.ViewModels;
-using Foundation;
-using GalaSoft.MvvmLight.Ioc;
+﻿using Foundation;
 using UIKit;
 
 namespace EmployeeDirectory.iOS
@@ -15,11 +9,6 @@ namespace EmployeeDirectory.iOS
 		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
 		{
 			global::Xamarin.Forms.Forms.Init();
-
-            var locator = SimpleIoc.Default;
-
-            locator.Register<VolonteerViewModel>();
-            locator.Register<NewVolonteerViewModel>();
 
             LoadApplication(new App());
 

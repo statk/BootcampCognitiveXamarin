@@ -28,10 +28,6 @@ namespace EmployeeDirectory.Windows
         {
             this.InitializeComponent();
 
-           
-
-            
-
             LoadApplication(new EmployeeDirectory.App());
         }
     }
