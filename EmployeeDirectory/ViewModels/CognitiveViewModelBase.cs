@@ -150,7 +150,8 @@ namespace EmployeeDirectory.ViewModels
                             FaceAttributeType.Gender,
                             FaceAttributeType.Age,
                             FaceAttributeType.Emotion,
-                            FaceAttributeType.Hair
+                            FaceAttributeType.Hair,
+                            FaceAttributeType.Glasses
                    });
                 var face = faces.First();
                 StringBuilder sb = new StringBuilder();
